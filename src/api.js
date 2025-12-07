@@ -1,22 +1,24 @@
+// api.js
+// URL del backend: usa la variable de entorno REACT_APP_API_URL, con fallback seguro
 const API_URL = process.env.REACT_APP_API_URL || "https://notasbackend-1.onrender.com";
 
-const API_URL = process.env.REACT_APP_API_URL;
+// -----------------------------
+// FUNCIONES CRUD
+// -----------------------------
 
-
+// Obtener todas las notas
 export const obtenerNotas = async () => {
   try {
     const res = await fetch(`${API_URL}/notas`);
-    if (!res.ok) {
-      throw new Error(`Error al obtener notas: ${res.status}`);
-    }
+    if (!res.ok) throw new Error(`Error al obtener notas: ${res.status}`);
     return await res.json();
   } catch (error) {
     console.error("Error al cargar notas:", error);
-    return [];
+    return []; // devuelve array vacío si falla
   }
 };
 
-// Crear una nueva nota
+// Crear nota
 export const crearNota = async (nota) => {
   try {
     const res = await fetch(`${API_URL}/notas`, {
@@ -24,16 +26,14 @@ export const crearNota = async (nota) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(nota),
     });
-    if (!res.ok) {
-      throw new Error(`Error al crear nota: ${res.status}`);
-    }
+    if (!res.ok) throw new Error(`Error al crear nota: ${res.status}`);
     return await res.json();
   } catch (error) {
     console.error("Error al guardar nota:", error);
   }
 };
 
-// Actualizar una nota existente
+// Actualizar nota
 export const actualizarNota = async (id, nota) => {
   try {
     const res = await fetch(`${API_URL}/notas/${id}`, {
@@ -41,24 +41,20 @@ export const actualizarNota = async (id, nota) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(nota),
     });
-    if (!res.ok) {
-      throw new Error(`Error al actualizar nota: ${res.status}`);
-    }
+    if (!res.ok) throw new Error(`Error al actualizar nota: ${res.status}`);
     return await res.json();
   } catch (error) {
     console.error("Error al actualizar nota:", error);
   }
 };
 
-// Eliminar una nota
+// Eliminar nota
 export const eliminarNota = async (id) => {
   try {
     const res = await fetch(`${API_URL}/notas/${id}`, {
       method: "DELETE",
     });
-    if (!res.ok) {
-      throw new Error(`Error al eliminar nota: ${res.status}`);
-    }
+    if (!res.ok) throw new Error(`Error al eliminar nota: ${res.status}`);
     return await res.json();
   } catch (error) {
     console.error("Error al eliminar nota:", error);
