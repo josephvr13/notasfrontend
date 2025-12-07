@@ -1,0 +1,135 @@
+:root {
+  --primary: #1560ff; /* azul principal */
+  --bg: #ffffff;      /* fondo blanco */
+  --text: #0b2340;    /* texto oscuro */
+  --muted: #6b7280;
+}
+
+/* Reset / base limpio */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+*, *::before, *::after { box-sizing: inherit; }
+
+/* Layout general */
+body {
+  min-height: 100vh;
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.app-container, .app {
+  width: 100%;
+  min-height: 100vh;
+  display: block;
+}
+
+.app-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Tipografía y enlaces */
+a {
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+}
+a:hover { opacity: 0.9; }
+
+/* Encabezados */
+h1 { font-size: 2.4rem; line-height: 1.1; margin: 0 0 0.5rem 0; }
+
+/* Tarjetas / notas (evitar usar .card globalmente, .card se usa para notas en styles.css) */
+.nota, .note {
+  background: #ffffff;
+  color: var(--text);
+  box-shadow: 0 8px 24px rgba(4,23,39,0.06);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Formularios */
+input, textarea, select {
+  background: #fff;
+  border: 1px solid #e6eefc;
+  color: var(--text);
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+}
+
+/* Botones */
+button, .btn, .button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: inherit;
+  display: inline-block;
+}
+button:hover, .btn:hover { filter: brightness(0.95); }
+
+/* Evitar reglas oscuras heredadas */
+footer, .dark, .bg-dark {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+/* Helpers */
+.fullscreen { width: 100%; min-height: 100vh; }
+
+/* Grid layout para notas */
+.notas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24px;
+  align-items: start;
+}
+
+.notas-grid .card {
+  margin: 0;
+  width: 100%;
+  max-width: none;
+}
+
+/* Breakpoints para grid y responsividad */
+@media (max-width: 1200px) {
+  .notas-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .card { padding: 12px; margin: 12px; max-width: calc(100% - 24px); }
+  .notas-grid { grid-template-columns: repeat(2, 1fr); } /* opcional si quieres mantener 2 columnas */
+}
+
+@media (max-width: 700px) {
+  .notas-grid { grid-template-columns: 1fr; padding: 12px; gap: 16px; }
+}
+
+@media (max-width: 600px) {
+  button, .btn { width: 100%; }
+}
