@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8000";
+const API_URL = "https://notasbackend-1.onrender.com/";
 
 
 export const obtenerNotas = async () => {
