@@ -1,10 +1,5 @@
-// api.js
-// URL del backend: usa la variable de entorno REACT_APP_API_URL, con fallback seguro
-const API_URL = process.env.REACT_APP_API_URL || "https://notasbackend-1.onrender.com";
-
-// -----------------------------
-// FUNCIONES CRUD
-// -----------------------------
+// src/api.js
+const API_URL = import.meta.env.VITE_API_URL || "https://notasbackend-1.onrender.com";
 
 // Obtener todas las notas
 export const obtenerNotas = async () => {
@@ -14,7 +9,7 @@ export const obtenerNotas = async () => {
     return await res.json();
   } catch (error) {
     console.error("Error al cargar notas:", error);
-    return []; // devuelve array vacío si falla
+    return [];
   }
 };
 
