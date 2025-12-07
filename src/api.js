@@ -1,13 +1,8 @@
 const API_URL = process.env.REACT_APP_API_URL || "https://notasbackend-1.onrender.com";
-// api.js
-// URL del backend tomada desde variables de entorno
+
 const API_URL = process.env.REACT_APP_API_URL;
 
-// -----------------------------
-// FUNCIONES CRUD
-// -----------------------------
 
-// Obtener todas las notas
 export const obtenerNotas = async () => {
   try {
     const res = await fetch(`${API_URL}/notas`);
